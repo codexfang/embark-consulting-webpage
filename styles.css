@@ -291,14 +291,8 @@ p { margin: 0; }
 .member p { color: var(--muted); font-size: .6rem; }
 
 /* join */
-.join-box { position: relative; overflow: hidden; padding: clamp(60px, 9vw, 120px) clamp(20px, 5vw, 60px); border: 1px solid var(--line); border-radius: 28px; background: var(--panel); text-align: center; }
-.join-box > * { position: relative; }
-.join-beam { position: absolute !important; opacity: .35; left: 50%; top: -30%; width: 2px; height: 160%; background: linear-gradient(transparent, var(--ice), transparent); box-shadow: 0 0 80px 30px rgba(143, 227, 255, .12); animation: beam 8s ease-in-out infinite alternate; }
-@keyframes beam { from { transform: translateX(-30vw) rotate(12deg); } to { transform: translateX(30vw) rotate(-12deg); } }
-.join h2 { font-size: clamp(2.6rem, 7vw, 5.6rem); }
-.join-sub { max-width: 560px; margin: 26px auto 0; color: var(--muted); font-size: 1.05rem; }
 /* recruitment timeline */
-.tl { list-style: none; padding: 0; margin: 80px 0 64px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); text-align: center; }
+.tl { list-style: none; padding: 0; margin: 0 0 64px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); text-align: center; }
 .tl li { position: relative; padding: 0 12px; }
 .tl li:not(:last-child)::before, .tl li:not(:last-child)::after {
   content: ""; position: absolute; top: 23px; left: calc(50% + 32px); width: calc(100% - 64px); height: 2px; border-radius: 2px;
@@ -323,7 +317,7 @@ p { margin: 0; }
 .tl-body h3 { font-size: 1.12rem; margin-bottom: 10px; }
 .tl-body p:last-child { color: var(--muted); font-size: .9rem; line-height: 1.55; }
 @media (max-width: 960px) {
-  .tl { grid-template-columns: minmax(0, 1fr); text-align: left; max-width: 540px; margin: 56px auto 48px; }
+  .tl { grid-template-columns: minmax(0, 1fr); text-align: left; max-width: 540px; margin: 0 0 48px; }
   .tl li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 0 22px; padding: 0 0 40px; }
   .tl li:last-child { padding-bottom: 0; }
   .tl-node { margin: 0; }

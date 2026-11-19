@@ -82,20 +82,22 @@ p { margin: 0; }
 .nav {
   position: fixed; inset: 0 0 auto; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 22px max(20px, calc((100% - 1240px) / 2));
+  padding: 26px max(20px, calc((100% - 1240px) / 2));
   transition: background .4s, padding .4s, border-color .4s;
   border-bottom: 1px solid transparent;
 }
-.nav.scrolled { background: rgba(5, 6, 8, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding-top: 14px; padding-bottom: 14px; border-color: var(--line); }
-.logo { display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; }
+.nav.scrolled { background: rgba(5, 6, 8, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding-top: 16px; padding-bottom: 16px; border-color: var(--line); }
+.logo { display: flex; align-items: center; gap: 16px; position: relative; z-index: 2; }
 .logo-mark { position: relative; width: 30px; height: 30px; border-radius: 9px; background: #0f1218; border: 1px solid var(--line-2); overflow: hidden; }
 .logo-mark i { position: absolute; left: 6px; right: 6px; top: 13px; height: 3px; border-radius: 2px; background: var(--ice); box-shadow: 0 0 10px var(--ice); animation: logoScan 3.5s ease-in-out infinite; }
 @keyframes logoScan { 0%, 48%, 52%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.1); opacity: .4; } }
-.logo-word { font-weight: 500; letter-spacing: .02em; font-size: 1.05rem; }
-.nav-links { display: flex; align-items: center; gap: 34px; font-size: .9rem; color: var(--muted); }
+.logo-img { width: 58px; height: 58px; border-radius: 50%; object-fit: contain; padding: 2px; background: #fff; box-shadow: 0 0 0 1px var(--line-2), 0 0 24px -4px rgba(143, 227, 255, .35); transition: transform .5s var(--ease); }
+.logo:hover .logo-img { transform: rotate(-8deg) scale(1.05); }
+.logo-word { font-weight: 500; letter-spacing: -0.01em; font-size: 1.55rem; }
+.nav-links { display: flex; align-items: center; gap: 38px; font-size: 1.15rem; color: var(--muted); }
 .nav-links a { transition: color .2s; position: relative; }
 .nav-links a:hover { color: var(--ink); }
-.nav-cta { color: var(--ink) !important; padding: 8px 18px; border: 1px solid var(--line-2); border-radius: 999px; transition: border-color .3s, background .3s !important; }
+.nav-cta { color: var(--ink) !important; padding: 11px 24px; border: 1px solid var(--line-2); border-radius: 999px; transition: border-color .3s, background .3s !important; }
 .nav-cta:hover { border-color: var(--ice); background: var(--ice-dim); }
 .nav-toggle { display: none; position: relative; z-index: 2; background: none; border: 0; width: 40px; height: 40px; padding: 0; }
 .nav-toggle span { display: block; width: 22px; height: 1.5px; margin: 6px auto; background: var(--ink); transition: transform .3s; }
@@ -120,7 +122,7 @@ p { margin: 0; }
 .btn-line:hover { color: var(--bg); box-shadow: none; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding: 110px 0 90px; }
+.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding: 140px 0 90px; }
 .hero-grid-bg {
   position: absolute; inset: 0; z-index: 0;
   background-image: linear-gradient(rgba(143, 227, 255, .09) 1px, transparent 1px), linear-gradient(90deg, rgba(143, 227, 255, .09) 1px, transparent 1px);
@@ -331,8 +333,14 @@ p { margin: 0; }
   .row .arrow { grid-row: 1; grid-column: 3; }
   .light-cone { right: -10%; width: 80vw; }
 }
+@media (max-width: 1100px) {
+  .nav-links { gap: 26px; font-size: 1.05rem; }
+  .logo-word { font-size: 1.35rem; }
+}
 @media (max-width: 720px) {
   .nav-toggle { display: block; }
+  .logo-img { width: 46px; height: 46px; }
+  .logo-word { font-size: 1.15rem; }
   .nav-links {
     position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 28px;
     font-size: 1.6rem; background: rgba(5, 6, 8, .97); opacity: 0; pointer-events: none; transition: opacity .4s;

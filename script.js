@@ -99,6 +99,18 @@
   })();
 
   /* =====================================================
+     Announcement banner (stays closed once dismissed)
+     ===================================================== */
+  const BANNER_KEY = "embark-banner-spring-2027";
+  let bannerClosed = false;
+  try { bannerClosed = localStorage.getItem(BANNER_KEY) === "closed"; } catch (_) {}
+  if (bannerClosed) document.body.classList.remove("has-banner");
+  $("#bannerClose").addEventListener("click", () => {
+    document.body.classList.remove("has-banner");
+    try { localStorage.setItem(BANNER_KEY, "closed"); } catch (_) {}
+  });
+
+  /* =====================================================
      Nav
      ===================================================== */
   const nav = $("#nav"), navLinks = $("#navLinks"), navToggle = $("#navToggle");

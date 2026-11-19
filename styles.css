@@ -79,8 +79,25 @@ p { margin: 0; }
 @media (pointer: fine) { body, a, button { cursor: none; } input, textarea, select { cursor: text; } }
 
 /* ---------- Nav ---------- */
+:root { --banner-h: 0px; }
+body.has-banner { --banner-h: 40px; }
+.banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 101; height: 40px;
+  display: none; align-items: center; justify-content: center; padding: 0 48px;
+  background: linear-gradient(90deg, #0b1820, #10232d 50%, #0b1820); border-bottom: 1px solid rgba(143, 227, 255, .25);
+  color: var(--ink);
+}
+body.has-banner .banner { display: flex; }
+.banner p { display: flex; align-items: center; gap: 10px; font-size: .66rem; letter-spacing: .16em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.banner-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ice); box-shadow: 0 0 8px var(--ice); flex-shrink: 0; animation: rec 1.6s steps(1) infinite; }
+.banner-close {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: transparent;
+  color: var(--muted); font-size: 1.3rem; line-height: 1; transition: color .2s, background .2s;
+}
+.banner-close:hover { color: var(--ink); background: rgba(255, 255, 255, .08); }
 .nav {
-  position: fixed; inset: 0 0 auto; z-index: 100;
+  position: fixed; inset: var(--banner-h) 0 auto; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 26px max(20px, calc((100% - 1240px) / 2));
   transition: background .4s, padding .4s, border-color .4s;
@@ -122,7 +139,7 @@ p { margin: 0; }
 .btn-line:hover { color: var(--bg); box-shadow: none; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding: 140px 0 90px; }
+.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding: calc(140px + var(--banner-h)) 0 90px; }
 .hero-grid-bg {
   position: absolute; inset: 0; z-index: 0;
   background-image: linear-gradient(rgba(143, 227, 255, .09) 1px, transparent 1px), linear-gradient(90deg, rgba(143, 227, 255, .09) 1px, transparent 1px);
@@ -375,6 +392,8 @@ p { margin: 0; }
   .nav-links.open { opacity: 1; pointer-events: auto; }
 }
 @media (max-width: 720px) {
+  .banner { padding: 0 40px 0 16px; }
+  .banner p { font-size: .58rem; letter-spacing: .08em; gap: 8px; }
   .logo-img { width: 46px; height: 46px; }
   .logo-word { font-size: 1.15rem; }
   .facts { grid-template-columns: 1fr; margin-top: 60px; }

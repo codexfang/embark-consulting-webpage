@@ -533,6 +533,14 @@
   $$(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 90 + "ms"; io.observe(el); });
 
   /* =====================================================
+     Recruitment timeline: light up step by step
+     ===================================================== */
+  const tl = $("#timeline");
+  new IntersectionObserver(([e], o) => {
+    if (e.isIntersecting) { tl.classList.add("run"); o.disconnect(); }
+  }, { threshold: 0.35 }).observe(tl);
+
+  /* =====================================================
      Contact form
      ===================================================== */
   $("#contactForm").addEventListener("submit", (e) => {

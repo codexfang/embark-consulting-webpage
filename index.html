@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Embark Consulting Group</title>
+  <meta name="description" content="Embark Consulting Group: UC Berkeley's technical consulting organization for the humanoid robotics industry." />
+  <meta name="theme-color" content="#050608" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d11'/><rect x='14' y='29' width='36' height='6' rx='3' fill='%238fe3ff'/></svg>" />
+</head>
+<body class="loading">
+
+  <!-- Shared SVG definitions (gradients / filters used by every robot) -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2b3039"/>
+        <stop offset=".55" stop-color="#14171d"/>
+        <stop offset="1" stop-color="#07080b"/>
+      </linearGradient>
+      <linearGradient id="metalFar" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#171a20"/>
+        <stop offset="1" stop-color="#060709"/>
+      </linearGradient>
+      <linearGradient id="metalH" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#0b0d11"/>
+        <stop offset=".5" stop-color="#262b33"/>
+        <stop offset="1" stop-color="#0b0d11"/>
+      </linearGradient>
+      <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#8fe3ff" stop-opacity=".75"/>
+        <stop offset=".3" stop-color="#8fe3ff" stop-opacity=".06"/>
+        <stop offset=".7" stop-color="#ffffff" stop-opacity=".04"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity=".45"/>
+      </linearGradient>
+      <linearGradient id="visorGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#8fe3ff" stop-opacity="0"/>
+        <stop offset=".2" stop-color="#8fe3ff" stop-opacity=".9"/>
+        <stop offset=".8" stop-color="#8fe3ff" stop-opacity=".9"/>
+        <stop offset="1" stop-color="#8fe3ff" stop-opacity="0"/>
+      </linearGradient>
+      <radialGradient id="faceGrad" cx=".4" cy=".3" r=".8">
+        <stop offset="0" stop-color="#1c2027"/>
+        <stop offset="1" stop-color="#050608"/>
+      </radialGradient>
+      <radialGradient id="halo" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#8fe3ff" stop-opacity=".22"/>
+        <stop offset="1" stop-color="#8fe3ff" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="3" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="softBlur"><feGaussianBlur stdDeviation="10"/></filter>
+    </defs>
+  </svg>
+
+  <!-- ============ INTRO ============ -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-line"></div>
+    <div class="intro-word">EMBARK</div>
+  </div>
+
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <a href="#top" class="logo" aria-label="Embark Consulting Group">
+      <span class="logo-mark"><i></i></span>
+      <span class="logo-word">Embark</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#dialogue">Dialogue</a>
+      <a href="#lab">Lab</a>
+      <a href="#practice">Practice</a>
+      <a href="#process">Process</a>
+      <a href="#team">Team</a>
+      <a href="#join" class="nav-cta">Join</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-grid-bg" aria-hidden="true"></div>
+    <div class="fog f1"></div><div class="fog f2"></div>
+    <div class="light-cone" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="kicker mono"><span class="rec"></span> UC Berkeley · Technical Consulting</p>
+        <h1 class="hero-title">
+          <span class="ln"><span>Consulting for the</span></span>
+          <span class="ln"><span><em>humanoid</em> frontier.</span></span>
+        </h1>
+        <p class="hero-sub">
+          Embark Consulting Group advises the companies building humanoid robots across hardware,
+          embodied AI, deployment and economics. Berkeley engineers, working on the questions that decide what ships.
+        </p>
+        <div class="hero-actions">
+          <a href="#join" class="btn"><span>Apply to Embark</span><b>→</b></a>
+          <a href="#contact" class="btn btn-line"><span>Partner with us</span></a>
+        </div>
+      </div>
+
+      <div class="hero-bust" id="bust">
+        <svg viewBox="0 0 520 640" class="bust-svg" aria-label="Humanoid robot head that follows your cursor. Click it to talk.">
+          <ellipse cx="260" cy="250" rx="240" ry="240" fill="url(#halo)"/>
+          <!-- shoulders -->
+          <path d="M30 640 C40 560 80 518 150 500 C186 490 204 470 214 452 L306 452 C316 470 334 490 370 500 C440 518 480 560 490 640 Z" fill="url(#metal)" stroke="url(#rim)" stroke-width="1.5"/>
+          <path d="M150 500 C190 512 214 540 222 600 M370 500 C330 512 306 540 298 600 M260 470 L260 640" stroke="#ffffff" stroke-opacity=".07" fill="none"/>
+          <ellipse cx="112" cy="530" rx="58" ry="34" fill="url(#metal)" stroke="url(#rim)" stroke-width="1.2"/>
+          <ellipse cx="408" cy="530" rx="58" ry="34" fill="url(#metal)" stroke="url(#rim)" stroke-width="1.2"/>
+          <path d="M70 528 h84 M366 528 h84" stroke="#fff" stroke-opacity=".06"/>
+          <rect class="chest-light" x="236" y="560" width="48" height="3" rx="1.5" fill="#8fe3ff" filter="url(#glow)"/>
+          <text x="260" y="590" text-anchor="middle" class="svg-mono" fill="#8fe3ff" fill-opacity=".35" font-size="9" letter-spacing="3">ECG-01</text>
+
+          <!-- neck -->
+          <g class="neck">
+            <rect x="224" y="360" width="72" height="100" rx="10" fill="#07080b" stroke="#fff" stroke-opacity=".06"/>
+            <g stroke="#2a2f38" stroke-width="5" stroke-linecap="round">
+              <line x1="230" y1="378" x2="290" y2="378"/><line x1="230" y1="394" x2="290" y2="394"/>
+              <line x1="230" y1="410" x2="290" y2="410"/><line x1="230" y1="426" x2="290" y2="426"/>
+              <line x1="230" y1="442" x2="290" y2="442"/>
+            </g>
+            <line x1="202" y1="456" x2="228" y2="372" stroke="#3a404b" stroke-width="7" stroke-linecap="round"/>
+            <line x1="318" y1="456" x2="292" y2="372" stroke="#3a404b" stroke-width="7" stroke-linecap="round"/>
+            <line x1="207" y1="440" x2="220" y2="398" stroke="#8fe3ff" stroke-opacity=".35" stroke-width="2"/>
+            <line x1="313" y1="440" x2="300" y2="398" stroke="#8fe3ff" stroke-opacity=".35" stroke-width="2"/>
+          </g>
+
+          <!-- head (moves with cursor) -->
+          <g class="bust-head" id="bustHead">
+            <path d="M260 92 C342 92 368 164 365 240 C362 302 330 364 260 376 C190 364 158 302 155 240 C152 164 178 92 260 92 Z" fill="url(#metal)" stroke="url(#rim)" stroke-width="1.6"/>
+            <path d="M196 124 Q260 100 324 124" stroke="#fff" stroke-opacity=".08" fill="none"/>
+            <ellipse cx="222" cy="140" rx="46" ry="14" fill="#fff" opacity=".05" transform="rotate(-18 222 140)"/>
+            <!-- ears -->
+            <g class="ear"><circle cx="158" cy="246" r="24" fill="url(#metal)" stroke="url(#rim)"/><circle cx="158" cy="246" r="11" fill="#07080b"/><circle class="ear-led" cx="158" cy="246" r="3" fill="#8fe3ff"/></g>
+            <g class="ear"><circle cx="362" cy="246" r="24" fill="url(#metal)" stroke="url(#rim)"/><circle cx="362" cy="246" r="11" fill="#07080b"/><circle class="ear-led" cx="362" cy="246" r="3" fill="#8fe3ff"/></g>
+            <!-- face -->
+            <path d="M260 150 C320 150 338 200 336 246 C334 302 304 346 260 354 C216 346 186 302 184 246 C182 200 200 150 260 150 Z" fill="url(#faceGrad)" stroke="#fff" stroke-opacity=".06"/>
+            <clipPath id="visorClip"><rect x="198" y="234" width="124" height="14" rx="7"/></clipPath>
+            <rect x="198" y="234" width="124" height="14" rx="7" fill="#000"/>
+            <g clip-path="url(#visorClip)">
+              <rect class="visor-base" x="198" y="234" width="124" height="14" fill="url(#visorGrad)" opacity=".35"/>
+              <ellipse class="visor-eye" id="visorEye" cx="260" cy="241" rx="26" ry="9" fill="#dff7ff" filter="url(#glow)"/>
+              <rect class="visor-scan" x="198" y="234" width="18" height="14" fill="#fff" opacity=".7"/>
+            </g>
+            <rect x="198" y="234" width="124" height="14" rx="7" fill="none" stroke="#8fe3ff" stroke-opacity=".25"/>
+            <!-- mouth grille -->
+            <g class="grille" id="grille">
+              <rect x="238" y="304" width="44" height="2.5" rx="1.25"/>
+              <rect x="234" y="312" width="52" height="2.5" rx="1.25"/>
+              <rect x="240" y="320" width="40" height="2.5" rx="1.25"/>
+            </g>
+          </g>
+        </svg>
+        <div class="bust-caption mono">
+          <div class="wave" id="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span id="bustSays">ECG-01 · LISTENING. Click to talk.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-foot mono">
+      <span>Scroll</span><span class="scroll-line"></span>
+    </div>
+  </header>
+
+  <!-- ============ MANIFESTO ============ -->
+  <section class="section manifesto" id="about">
+    <div class="wrap">
+      <p class="label mono">[ 01 ] Thesis</p>
+      <p class="manifesto-text" id="manifesto">
+        Humanoids are leaving the lab. The hardest questions now sit between engineering and business:
+        which actuators to bet on, what a robot-hour really costs, where to deploy first, and how to earn trust working beside people.
+        That is where we work.
+      </p>
+      <div class="facts">
+        <div class="fact reveal"><span class="mono">06</span><p>Practice areas spanning hardware to go-to-market</p></div>
+        <div class="fact reveal"><span class="mono">EECS · ME · BUS</span><p>Cross-disciplinary teams of Berkeley students</p></div>
+        <div class="fact reveal"><span class="mono">1 : 1</span><p>Every engagement scoped around a single decision</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIALOGUE ============ -->
+  <section class="section dialogue" id="dialogue">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="label mono">[ 02 ] Dialogue</p>
+          <h2>Two machines.<br/><em>One conversation.</em></h2>
+        </div>
+        <p class="side-note">A humanoid prototype talks through its problems with an Embark analyst. This is what an engagement sounds like.</p>
+      </div>
+
+      <div class="stage" id="talkStage">
+        <div class="stage-floor"></div>
+        <div class="bubble bubble-a" id="bubbleA"></div>
+        <div class="bubble bubble-b" id="bubbleB"></div>
+        <svg id="talkSvg" viewBox="0 30 400 340" aria-label="Two humanoid robots having a conversation and shaking hands">
+          <ellipse cx="88" cy="352" rx="46" ry="5" fill="#8fe3ff" opacity=".12" filter="url(#softBlur)"/>
+          <ellipse cx="312" cy="352" rx="46" ry="5" fill="#8fe3ff" opacity=".12" filter="url(#softBlur)"/>
+        </svg>
+        <div class="tag tag-a mono">UNIT_A · PROTOTYPE</div>
+        <div class="tag tag-b mono">EMBARK · ANALYST</div>
+      </div>
+
+      <div class="transcript mono" id="transcript" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ============ LAB (robotic arm) ============ -->
+  <section class="section lab" id="lab">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="label mono">[ 03 ] Manipulation Lab</p>
+          <h2>We think in <em>joints,</em><br/>torque and grip.</h2>
+        </div>
+        <p class="side-note">Move your cursor into the cell to take control of the arm. Click to grip and click again to release. Leave the cell and it goes back to its routine.</p>
+      </div>
+
+      <div class="cell" id="cell">
+        <div class="cell-hud mono">
+          <div><span>MODE</span><b id="hudMode">AUTO</b></div>
+          <div><span>J1</span><b id="hudJ1">0°</b></div>
+          <div><span>J2</span><b id="hudJ2">0°</b></div>
+          <div><span>J3</span><b id="hudJ3">0°</b></div>
+          <div><span>GRIP</span><b id="hudGrip">OPEN</b></div>
+          <div><span>PAYLOAD</span><b id="hudLoad">0.0 kg</b></div>
+        </div>
+        <svg id="armSvg" viewBox="0 0 640 400" aria-label="Interactive industrial robotic arm picking and placing a cube">
+          <defs>
+            <pattern id="floorGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+              <path d="M32 0H0V32" fill="none" stroke="#8fe3ff" stroke-opacity=".06"/>
+            </pattern>
+          </defs>
+          <rect x="-600" y="-200" width="1840" height="560" fill="url(#floorGrid)"/>
+          <line x1="-600" y1="360.5" x2="1240" y2="360.5" stroke="#8fe3ff" stroke-opacity=".35"/>
+          <rect x="-600" y="361" width="1840" height="200" fill="#07080b"/>
+          <!-- pads -->
+          <g class="pad"><rect x="296" y="358" width="68" height="4" rx="2" fill="#8fe3ff" opacity=".5"/><text x="330" y="380" text-anchor="middle" class="svg-mono" font-size="9" fill="#8fe3ff" fill-opacity=".5" letter-spacing="2">PAD A</text></g>
+          <g class="pad"><rect x="456" y="358" width="68" height="4" rx="2" fill="#8fe3ff" opacity=".5"/><text x="490" y="380" text-anchor="middle" class="svg-mono" font-size="9" fill="#8fe3ff" fill-opacity=".5" letter-spacing="2">PAD B</text></g>
+          <!-- laser + reticle -->
+          <line id="laser" x1="0" y1="0" x2="0" y2="360" stroke="#ff4b3e" stroke-opacity=".55" stroke-dasharray="3 5"/>
+          <g id="reticle"><circle r="7" fill="none" stroke="#ff4b3e" stroke-opacity=".7"/><circle r="1.5" fill="#ff4b3e"/></g>
+          <!-- base -->
+          <g>
+            <path d="M92 360 L104 330 L176 330 L188 360 Z" fill="url(#metal)" stroke="url(#rim)"/>
+            <rect x="116" y="312" width="48" height="22" rx="6" fill="url(#metal)" stroke="url(#rim)"/>
+            <circle cx="114" cy="348" r="2.5" fill="#3dff9a" class="blink"/>
+            <circle cx="124" cy="348" r="2.5" fill="#8fe3ff"/>
+          </g>
+          <!-- cube -->
+          <g id="cube">
+            <rect x="-17" y="-17" width="34" height="34" rx="3" fill="#8fe3ff" fill-opacity=".08" stroke="#8fe3ff" stroke-width="1.5"/>
+            <path d="M-17 -6 H17 M-6 -17 V17" stroke="#8fe3ff" stroke-opacity=".35"/>
+            <rect x="-5" y="-5" width="10" height="10" fill="#8fe3ff" filter="url(#glow)" opacity=".85"/>
+          </g>
+          <!-- arm -->
+          <g id="seg1">
+            <path d="M8 -26 Q 95 -44 182 -24" stroke="#2c323c" stroke-width="3" fill="none"/>
+            <rect x="-20" y="-17" width="230" height="34" rx="17" fill="url(#metalH)" stroke="url(#rim)" stroke-width="1.2"/>
+            <rect x="30" y="-4" width="130" height="8" rx="4" fill="#050608"/>
+            <rect x="34" y="-1.5" width="60" height="3" rx="1.5" fill="#8fe3ff" opacity=".6" class="flow"/>
+            <circle r="28" fill="url(#metal)" stroke="url(#rim)" stroke-width="1.4"/>
+            <circle r="14" fill="#07080b" stroke="#8fe3ff" stroke-opacity=".4"/>
+            <circle r="4" fill="#8fe3ff" filter="url(#glow)"/>
+            <g id="seg2">
+              <rect x="-15" y="-13" width="205" height="26" rx="13" fill="url(#metalH)" stroke="url(#rim)" stroke-width="1.2"/>
+              <rect x="28" y="-3" width="120" height="6" rx="3" fill="#050608"/>
+              <circle r="21" fill="url(#metal)" stroke="url(#rim)" stroke-width="1.4"/>
+              <circle r="9" fill="#07080b" stroke="#8fe3ff" stroke-opacity=".4"/>
+              <circle r="3" fill="#8fe3ff" filter="url(#glow)"/>
+              <g id="wrist">
+                <circle r="14" fill="url(#metal)" stroke="url(#rim)"/>
+                <rect x="-8" y="6" width="16" height="10" fill="#14171d"/>
+                <rect x="-26" y="14" width="52" height="12" rx="4" fill="url(#metalH)" stroke="url(#rim)"/>
+                <g id="fingerL"><rect x="-4" y="24" width="8" height="34" rx="3" fill="url(#metal)" stroke="url(#rim)"/><rect x="2" y="36" width="2" height="18" fill="#8fe3ff" opacity=".7"/></g>
+                <g id="fingerR"><rect x="-4" y="24" width="8" height="34" rx="3" fill="url(#metal)" stroke="url(#rim)"/><rect x="-4" y="36" width="2" height="18" fill="#8fe3ff" opacity=".7"/></g>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div class="cell-hint mono" id="cellHint">◎ Hover to take control</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRACTICE ============ -->
+  <section class="section practice" id="practice">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="label mono">[ 04 ] Practice Areas</p>
+          <h2>The full stack of<br/><em>a machine that walks.</em></h2>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row reveal"><span class="mono n">01</span><h3>Hardware &amp; Actuation</h3><p>Actuator and gearbox benchmarking, BOM teardowns, supplier mapping and build-vs-buy decisions.</p><span class="arrow">↗</span></div>
+        <div class="row reveal"><span class="mono n">02</span><h3>Embodied AI &amp; Autonomy</h3><p>Perception stacks, vision-language-action model evaluation, sim-to-real and data-collection strategy.</p><span class="arrow">↗</span></div>
+        <div class="row reveal"><span class="mono n">03</span><h3>Deployment &amp; Go-to-Market</h3><p>Use-case prioritization and pilot design across manufacturing, logistics and the home.</p><span class="arrow">↗</span></div>
+        <div class="row reveal"><span class="mono n">04</span><h3>Unit Economics</h3><p>Cost-per-robot-hour models, robots-as-a-service pricing and customer ROI analysis.</p><span class="arrow">↗</span></div>
+        <div class="row reveal"><span class="mono n">05</span><h3>Safety &amp; Policy</h3><p>Human-robot interaction risk, safety standards, certification paths and the regulatory landscape.</p><span class="arrow">↗</span></div>
+        <div class="row reveal"><span class="mono n">06</span><h3>Research Bridge</h3><p>Translating frontier academic research into product roadmaps, and connecting partners with Berkeley talent.</p><span class="arrow">↗</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS (walker) ============ -->
+  <section class="section process" id="process">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="label mono">[ 05 ] Process</p>
+          <h2>One step <em>at a time.</em></h2>
+        </div>
+        <p class="side-note">Scroll to walk the engagement.</p>
+      </div>
+      <div class="walk-track">
+        <svg id="walkSvg" viewBox="0 30 1000 340" preserveAspectRatio="xMidYMax meet" aria-label="Humanoid robot walking as you scroll">
+          <line x1="0" y1="352.5" x2="1000" y2="352.5" stroke="#8fe3ff" stroke-opacity=".25"/>
+          <line id="walkProgress" x1="0" y1="352.5" x2="0" y2="352.5" stroke="#8fe3ff" stroke-width="2"/>
+          <g class="ticks">
+            <line x1="125" y1="346" x2="125" y2="359"/><line x1="375" y1="346" x2="375" y2="359"/>
+            <line x1="625" y1="346" x2="625" y2="359"/><line x1="875" y1="346" x2="875" y2="359"/>
+          </g>
+        </svg>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="mono">01 / SCOPE</span><h3>Define the decision</h3><p>We sit down with your team and pin down the one question that matters most, and what a great answer looks like.</p></div>
+        <div class="step"><span class="mono">02 / TEARDOWN</span><h3>Go deep</h3><p>Specs, patents, papers, expert interviews and competitive landscapes, taken apart to the bolt.</p></div>
+        <div class="step"><span class="mono">03 / MODEL</span><h3>Build the tools</h3><p>Cost models, simulations and frameworks that turn research into something you can decide with.</p></div>
+        <div class="step"><span class="mono">04 / DELIVER</span><h3>Hand it off</h3><p>Clear recommendations plus every model we built, documented and ready to use.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section team" id="team">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="label mono">[ 06 ] Leadership</p>
+          <h2>The people <em>behind the machine.</em></h2>
+        </div>
+      </div>
+      <!-- TODO: replace with your real board -->
+      <div class="team-grid">
+        <div class="member reveal"><div class="portrait"><span>YN</span><i></i></div><h3>Your Name</h3><p class="mono">Founder &amp; President</p></div>
+        <div class="member reveal"><div class="portrait"><span>VP</span><i></i></div><h3>Member Name</h3><p class="mono">VP, Consulting</p></div>
+        <div class="member reveal"><div class="portrait"><span>VP</span><i></i></div><h3>Member Name</h3><p class="mono">VP, External</p></div>
+        <div class="member reveal"><div class="portrait"><span>DR</span><i></i></div><h3>Member Name</h3><p class="mono">Director, Research</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOIN ============ -->
+  <section class="section join" id="join">
+    <div class="wrap">
+      <div class="join-box reveal">
+        <div class="join-beam" aria-hidden="true"></div>
+        <p class="label mono center">[ 07 ] Recruitment</p>
+        <h2 class="center">Ready to <em>embark?</em></h2>
+        <p class="join-sub">We're looking for builders: engineers, computer scientists, business minds and anyone who can't stop thinking about robots. No consulting experience required.</p>
+        <ol class="stages mono">
+          <li><span>01</span>Info session</li>
+          <li><span>02</span>Coffee chats</li>
+          <li><span>03</span>Application</li>
+          <li><span>04</span>Case interview</li>
+          <li><span>05</span>Onboarding</li>
+        </ol>
+        <div class="hero-actions center">
+          <a href="#" class="btn"><span>Apply now</span><b>→</b></a>
+          <a href="#contact" class="btn btn-line"><span>Get updates</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <footer class="footer" id="contact">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="label mono">[ 08 ] Contact</p>
+        <h2>Building humanoids?<br/><em>Let's talk.</em></h2>
+        <p class="side-note">Startups, established robotics companies and investors: bring us your hardest problem.</p>
+        <a class="mail mono" href="mailto:embark@example.com">embark@example.com ↗</a>
+      </div>
+      <form class="form" id="contactForm">
+        <label><span class="mono">Name</span><input required name="name" autocomplete="name" /></label>
+        <label><span class="mono">Email</span><input required type="email" name="email" autocomplete="email" /></label>
+        <label><span class="mono">You are</span>
+          <select name="type"><option>Company / Startup</option><option>Berkeley student</option><option>Investor</option><option>Other</option></select>
+        </label>
+        <label><span class="mono">Message</span><textarea name="msg" rows="3"></textarea></label>
+        <button class="btn" type="submit"><span>Transmit</span><b>→</b></button>
+      </form>
+    </div>
+    <div class="wrap footer-bottom mono">
+      <span>Embark Consulting Group · UC Berkeley</span>
+      <span>A student organization. Not an official representative of UC Berkeley.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

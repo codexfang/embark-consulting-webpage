@@ -41,26 +41,17 @@ p { margin: 0; }
 ::selection { background: var(--ice); color: var(--bg); }
 
 /* ---------- Intro ---------- */
-.intro {
-  position: fixed; inset: 0; z-index: 1000; background: #000;
-  display: grid; place-items: center;
-  transition: clip-path 1s var(--ease) .1s;
-  clip-path: inset(0 0 0 0);
+.intro { position: fixed; inset: 0; z-index: 1000; background: #000; pointer-events: none; }
+.intro.out { animation: introFlash .55s steps(1, end) forwards; }
+@keyframes introFlash {
+  0%   { opacity: 1; }
+  18%  { opacity: .15; }
+  36%  { opacity: .9; }
+  54%  { opacity: .05; }
+  72%  { opacity: .5; }
+  100% { opacity: 0; }
 }
-.intro.out { clip-path: inset(0 0 100% 0); }
-.intro-line {
-  position: absolute; top: 50%; left: 50%; height: 2px; width: 0;
-  transform: translate(-50%, -50%); background: var(--ice);
-  box-shadow: 0 0 20px var(--ice), 0 0 60px var(--ice);
-  animation: introLine 1.1s var(--ease) forwards;
-}
-.intro-word {
-  font-family: var(--mono); font-size: .8rem; letter-spacing: 1.2em; color: var(--ice);
-  transform: translateY(34px); opacity: 0; animation: introWord .8s .5s forwards;
-  padding-left: 1.2em;
-}
-@keyframes introLine { 60% { width: 220px; } 100% { width: 220px; opacity: .9; } }
-@keyframes introWord { to { opacity: .8; } }
+@media (prefers-reduced-motion: reduce) { .intro.out { animation: none; opacity: 0; transition: opacity .3s; } }
 
 /* ---------- Ambient ---------- */
 #dust { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }

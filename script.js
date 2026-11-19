@@ -37,12 +37,12 @@
   const intro = $("#intro");
   let seen = false;
   try { seen = sessionStorage.getItem("embark-intro") === "1"; sessionStorage.setItem("embark-intro", "1"); } catch (_) {}
-  const introMs = reduce || seen ? 150 : 1500;
+  const introMs = reduce || seen ? 60 : 250;
   setTimeout(() => {
     intro.classList.add("out");
     document.body.classList.remove("loading");
     document.body.classList.add("ready");
-    setTimeout(() => intro.remove(), 1200);
+    setTimeout(() => intro.remove(), 700);
   }, introMs);
 
   /* =====================================================

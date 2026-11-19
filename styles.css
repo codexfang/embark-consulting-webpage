@@ -180,6 +180,8 @@ p { margin: 0; }
 .section { position: relative; z-index: 2; padding: clamp(100px, 14vw, 180px) 0; border-top: 1px solid var(--line); }
 .label { color: var(--ice); margin-bottom: 24px; opacity: .85; }
 .head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 64px; flex-wrap: wrap; }
+.head-row > div { width: 100%; }
+@media (min-width: 721px) { .fit { white-space: nowrap; } }
 .side-note { max-width: 360px; color: var(--muted); font-size: 1rem; }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }

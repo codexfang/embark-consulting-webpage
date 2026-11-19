@@ -555,14 +555,31 @@
   /* =====================================================
      Contact form
      ===================================================== */
-  $("#contactForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    // TODO: connect to Formspree / Google Forms / a backend
+  const toast = (msg) => {
     const t = document.createElement("div");
-    t.className = "toast mono"; t.textContent = "Transmission received. We'll be in touch.";
+    t.className = "toast mono"; t.textContent = msg;
     document.body.appendChild(t);
     requestAnimationFrame(() => t.classList.add("show"));
-    setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 600); }, 3200);
-    e.target.reset();
+    setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 600); }, 3600);
+  };
+  $("#contactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target, btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contact@embarkconsulting.org", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === "false") throw new Error(data.message || "Send failed");
+      toast("Message sent. We'll be in touch.");
+      form.reset();
+    } catch (_) {
+      toast("Couldn't send. Email contact@embarkconsulting.org instead.");
+    } finally {
+      btn.disabled = false;
+    }
   });
 })();

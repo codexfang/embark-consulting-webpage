@@ -144,6 +144,7 @@ p { margin: 0; }
 
 .hero-inner { position: relative; z-index: 2; width: min(1240px, 100% - 40px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
 .kicker { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); margin-bottom: 28px; }
+.rec { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 10px var(--signal); animation: rec 1.6s steps(1) infinite; }
 @keyframes rec { 50% { opacity: .2; } }
 .hero-title { font-size: clamp(2.6rem, 6vw, 5.6rem); font-weight: 300; letter-spacing: -0.045em; line-height: 1; }
 .hero-title em { font-size: 1.08em; }

@@ -424,6 +424,8 @@ body.has-banner .banner { display: flex; }
   .to-top { display: none; }
   .founders .member p.bio { display: none; }
   .founders .member.reveal { transition-delay: 0ms !important; }
+  .hero-bust { order: 0; margin: -20px auto 0; }
+  .hero-actions { display: none; }
 }
 @media (max-width: 520px) {
   .steps { grid-template-columns: 1fr; }

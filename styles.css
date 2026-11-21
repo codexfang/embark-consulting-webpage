@@ -94,7 +94,9 @@ body.has-banner .banner { display: flex; }
   transition: background .4s, padding .4s, border-color .4s;
   border-bottom: 1px solid transparent;
 }
-.nav.scrolled { background: rgba(5, 6, 8, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding-top: 16px; padding-bottom: 16px; border-color: var(--line); }
+.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(5, 6, 8, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.nav.scrolled { padding-top: 16px; padding-bottom: 16px; border-color: var(--line); }
+.nav.scrolled::before { opacity: 1; }
 .logo { display: flex; align-items: center; gap: 16px; position: relative; z-index: 2; }
 .logo-mark { position: relative; width: 30px; height: 30px; border-radius: 9px; background: #0f1218; border: 1px solid var(--line-2); overflow: hidden; }
 .logo-mark i { position: absolute; left: 6px; right: 6px; top: 13px; height: 3px; border-radius: 2px; background: var(--ice); box-shadow: 0 0 10px var(--ice); animation: logoScan 3.5s ease-in-out infinite; }

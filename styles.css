@@ -421,6 +421,9 @@ body.has-banner .banner { display: flex; }
   .cell-hud b { min-width: 0; }
   .cell-hint { display: none; }
   #armSvg { margin-top: 50px; }
+  .to-top { display: none; }
+  .founders .member p.bio { display: none; }
+  .founders .member.reveal { transition-delay: 0ms !important; }
 }
 @media (max-width: 520px) {
   .steps { grid-template-columns: 1fr; }

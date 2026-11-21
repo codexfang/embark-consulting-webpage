@@ -285,7 +285,12 @@ body.has-banner .banner { display: flex; }
 
 /* team */
 .team-grid { display: grid; gap: 20px; }
-.team-grid.founders { grid-template-columns: repeat(2, 1fr); max-width: 680px; gap: 28px; }
+.team-grid.founders { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.founders .member { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.founders .portrait { margin-bottom: 0; }
+.founders .member-info { padding-top: 4px; }
+.founders .member-info h3 { font-size: 1.5rem; }
+.founders .member p.bio { color: var(--muted); font-size: .92rem; line-height: 1.6; margin-top: 18px; }
 .team-grid.leadership { grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .team-group { display: flex; align-items: center; gap: 16px; color: var(--muted); margin-bottom: 28px; }
 .team-group::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -378,7 +383,9 @@ body.has-banner .banner { display: flex; }
   .hero-foot { display: none; }
   .hero-bust { max-width: 340px; order: -1; margin-bottom: -10px; }
   .form { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-  .team-grid.leadership { grid-template-columns: repeat(3, 1fr); }
+  .team-grid.leadership { gap: 14px; }
+  .founders .member { grid-template-columns: 1fr; gap: 16px; }
+  .founders .member-info h3 { font-size: 1.25rem; }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .step:nth-child(3) { padding-left: 0; border-left: 0; }
   .row { grid-template-columns: 50px 1fr 30px; }
@@ -418,7 +425,8 @@ body.has-banner .banner { display: flex; }
 @media (max-width: 520px) {
   .steps { grid-template-columns: 1fr; }
   .step, .step + .step { padding: 22px 0; border-left: 0; border-bottom: 1px solid var(--line); }
-  .team-grid.founders, .team-grid.leadership { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .team-grid.leadership { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .team-grid.founders { gap: 14px; }
   .team-grid + .team-group { margin-top: 48px; }
   .hero-title { font-size: 11vw; }
 }

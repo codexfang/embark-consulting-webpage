@@ -286,7 +286,7 @@ body.has-banner .banner { display: flex; }
 /* team */
 .team-grid { display: grid; gap: 20px; }
 .team-grid.founders { grid-template-columns: repeat(2, 1fr); max-width: 680px; gap: 28px; }
-.team-grid.leadership { grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.team-grid.leadership { grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .team-group { display: flex; align-items: center; gap: 16px; color: var(--muted); margin-bottom: 28px; }
 .team-group::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .team-grid + .team-group { margin-top: 72px; }

@@ -583,3 +583,42 @@
     }
   });
 })();
+
+/* =========================================================
+   Clean section URLs: /dialogue instead of /#dialogue
+   (404.html sends direct visits like /dialogue back to /?p=dialogue)
+   ========================================================= */
+(() => {
+  "use strict";
+  const section = (id) => id && document.getElementById(id);
+  const go = (id, instant) => {
+    if (!id || id === "top") return scrollTo({ top: 0, behavior: instant ? "instant" : undefined });
+    const el = section(id);
+    if (el) el.scrollIntoView(instant ? { behavior: "instant" } : undefined);
+  };
+  const urlFor = (id) => (id === "top" ? "/" : "/" + id);
+
+  document.addEventListener("click", (e) => {
+    if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!section(id)) return;
+    e.preventDefault();
+    if (location.pathname + location.search + location.hash !== urlFor(id)) history.pushState({ id }, "", urlFor(id));
+    go(id);
+  });
+
+  addEventListener("popstate", () => go(location.pathname.replace(/^\/|\/$/g, "") || "top"));
+
+  // Initial load: /?p=dialogue (from 404.html), old /#dialogue links, or /dialogue
+  const params = new URLSearchParams(location.search);
+  const id = params.get("p") || location.hash.slice(1) || location.pathname.replace(/^\/|\/$/g, "").replace(/^index\.html$/, "");
+  if (!id) return;
+  if (section(id)) {
+    history.replaceState({ id }, "", urlFor(id));
+    addEventListener("load", () => setTimeout(() => go(id, true), 60));
+  } else if (params.has("p")) {
+    history.replaceState(null, "", "/");
+  }
+})();

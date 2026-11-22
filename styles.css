@@ -435,6 +435,9 @@ body.has-banner .banner { display: flex; }
   .step, .step + .step { padding: 22px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .team-grid.leadership { grid-template-columns: 1fr 1fr; gap: 14px; }
   .team-grid.founders { gap: 14px; }
+  .role-sep { display: none; }
+  .role-a, .role-b { display: block; }
+  .role-b { margin-top: 3px; }
   .team-grid + .team-group { margin-top: 48px; }
   .hero-title { font-size: 11vw; }
 }
